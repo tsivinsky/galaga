@@ -24,6 +24,7 @@ type Game struct {
 	lastEnemySpawn        time.Time
 	isGameOver            bool
 	isPaused              bool
+	isVictory             bool
 	defeatedEnemiesCount  int
 }
 

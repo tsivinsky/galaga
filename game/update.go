@@ -23,6 +23,10 @@ func (g *Game) Update() error {
 		return nil
 	}
 
+	if g.isVictory {
+		return nil
+	}
+
 	isOptionsPressed := false
 	for id := range g.pressedGamepadButtons {
 		for button := range g.pressedGamepadButtons[id] {
@@ -74,6 +78,12 @@ func (g *Game) Update() error {
 		for _, e := range g.enemies {
 			e.Speed = g.calculateEnemySpeed()
 		}
+	}
+
+	const niceNumber = 69
+	if g.defeatedEnemiesCount == niceNumber {
+		g.isVictory = true
+		return nil
 	}
 
 	return nil

@@ -15,6 +15,11 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		return
 	}
 
+	if g.isVictory {
+		fonts.DrawTextInCenter(screen, "Victory", color.White)
+		return
+	}
+
 	g.drawBackground(screen)
 	g.drawEnemyCount(screen)
 	g.player.Draw(screen)
