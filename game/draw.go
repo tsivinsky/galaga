@@ -15,26 +15,34 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		return
 	}
 
-	vector.DrawFilledRect(screen, 0, 0, float32(g.windowWidth), float32(g.windowHeight), color.Black, false)
-
-	g.showEnemyCount(screen)
-
+	g.drawBackground(screen)
+	g.drawEnemyCount(screen)
 	g.player.Draw(screen)
-
-	for _, b := range g.bullets {
-		b.Draw(screen)
-	}
-
-	for _, e := range g.enemies {
-		e.Draw(screen)
-	}
+	g.drawEnemies(screen)
+	g.drawBullets(screen)
 
 	if g.isPaused {
 		fonts.DrawTextInCenter(screen, "Game Paused", color.White)
 	}
 }
 
-func (g *Game) showEnemyCount(screen *ebiten.Image) {
+func (g *Game) drawBackground(screen *ebiten.Image) {
+	vector.DrawFilledRect(screen, 0, 0, float32(g.windowWidth), float32(g.windowHeight), color.Black, false)
+}
+
+func (g *Game) drawBullets(screen *ebiten.Image) {
+	for _, b := range g.bullets {
+		b.Draw(screen)
+	}
+}
+
+func (g *Game) drawEnemies(screen *ebiten.Image) {
+	for _, e := range g.enemies {
+		e.Draw(screen)
+	}
+}
+
+func (g *Game) drawEnemyCount(screen *ebiten.Image) {
 	msg := fmt.Sprintf("Defeated: %d", g.defeatedEnemiesCount)
 	fonts.DrawTextInCoords(screen, msg, 10, 10, color.White)
 }
