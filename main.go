@@ -12,7 +12,7 @@ import (
 
 func main() {
 	ebiten.SetWindowTitle("Hello World!")
-	// ebiten.SetFullscreen(true)
+	ebiten.SetFullscreen(true)
 	ebiten.SetCursorMode(ebiten.CursorModeHidden)
 
 	p := player.New(player.Options{
