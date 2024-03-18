@@ -1,6 +1,6 @@
 package enemy
 
-import "game/bullet"
+import "github.com/tsivinsky/galaga/bullet"
 
 func (e *Enemy) CollidesWithBullet(bullets []*bullet.Bullet) bool {
 	for _, b := range bullets {

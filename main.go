@@ -1,10 +1,11 @@
 package main
 
 import (
-	"game/game"
-	"game/player"
 	"image/color"
 	"log"
+
+	"github.com/tsivinsky/galaga/game"
+	"github.com/tsivinsky/galaga/player"
 
 	"github.com/hajimehoshi/ebiten/v2"
 )

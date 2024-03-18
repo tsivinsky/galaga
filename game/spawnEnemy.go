@@ -1,8 +1,9 @@
 package game
 
 import (
-	"game/enemy"
 	"math/rand"
+
+	"github.com/tsivinsky/galaga/enemy"
 )
 
 func (g *Game) SpawnEnemy() {

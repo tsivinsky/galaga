@@ -1,10 +1,11 @@
 package game
 
 import (
-	"game/bullet"
-	"game/enemy"
-	"game/player"
 	"time"
+
+	"github.com/tsivinsky/galaga/bullet"
+	"github.com/tsivinsky/galaga/enemy"
+	"github.com/tsivinsky/galaga/player"
 
 	"github.com/hajimehoshi/ebiten/v2"
 )

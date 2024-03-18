@@ -1,6 +1,6 @@
 package game
 
-import "game/bullet"
+import "github.com/tsivinsky/galaga/bullet"
 
 func (g *Game) Shoot() {
 	g.bullets = append(g.bullets, bullet.New(bullet.Options{
