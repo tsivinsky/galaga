@@ -11,19 +11,20 @@ import (
 )
 
 type Game struct {
-	player               player.Player
-	windowWidth          int
-	windowHeight         int
-	bullets              []*bullet.Bullet
-	gamepadIDsBuf        []ebiten.GamepadID
-	gamepadIDs           map[ebiten.GamepadID]struct{}
-	axes                 map[ebiten.GamepadID][]string
-	lastShootingTime     time.Time
-	enemies              []*enemy.Enemy
-	lastEnemySpawn       time.Time
-	isGameOver           bool
-	isPaused             bool
-	defeatedEnemiesCount int
+	player                player.Player
+	windowWidth           int
+	windowHeight          int
+	bullets               []*bullet.Bullet
+	gamepadIDsBuf         []ebiten.GamepadID
+	gamepadIDs            map[ebiten.GamepadID]struct{}
+	axes                  map[ebiten.GamepadID][]string
+	pressedGamepadButtons map[ebiten.GamepadID]map[ebiten.GamepadButton]bool
+	lastShootingTime      time.Time
+	enemies               []*enemy.Enemy
+	lastEnemySpawn        time.Time
+	isGameOver            bool
+	isPaused              bool
+	defeatedEnemiesCount  int
 }
 
 type GameOptions struct {

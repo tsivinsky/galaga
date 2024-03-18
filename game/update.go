@@ -23,7 +23,14 @@ func (g *Game) Update() error {
 		return nil
 	}
 
-	if ebiten.IsKeyPressed(ebiten.KeySpace) {
+	isOptionsPressed := false
+	for id := range g.pressedGamepadButtons {
+		for button := range g.pressedGamepadButtons[id] {
+			if button == ebiten.GamepadButton(9) {
+				isOptionsPressed = true
+			}
+		}
+	}
 	if inpututil.IsKeyJustPressed(ebiten.KeySpace) || isOptionsPressed {
 		g.isPaused = !g.isPaused
 		return nil
@@ -88,13 +95,36 @@ func (g *Game) handleGamepads() {
 	}
 
 	g.axes = map[ebiten.GamepadID][]string{}
+	g.pressedGamepadButtons = map[ebiten.GamepadID]map[ebiten.GamepadButton]bool{}
 	for id := range g.gamepadIDs {
 		maxAxis := ebiten.GamepadAxisCount(id)
 		for a := 0; a < maxAxis; a++ {
 			v := ebiten.GamepadAxisValue(id, a)
 			g.axes[id] = append(g.axes[id], fmt.Sprintf("%d: %f", a, v))
 		}
+
+		if ebiten.IsStandardGamepadLayoutAvailable(id) {
+			for b := ebiten.StandardGamepadButton(0); b <= ebiten.StandardGamepadButtonMax; b++ {
+				if inpututil.IsStandardGamepadButtonJustPressed(id, b) {
+					g.addPressedGamepadButton(id, ebiten.GamepadButton(b))
+				}
+				if inpututil.IsStandardGamepadButtonJustReleased(id, b) {
+					g.removePressedGamepadButton(id, ebiten.GamepadButton(b))
+				}
+			}
+		}
 	}
+}
+
+func (g *Game) addPressedGamepadButton(gamepadId ebiten.GamepadID, button ebiten.GamepadButton) {
+	if g.pressedGamepadButtons[gamepadId] == nil {
+		g.pressedGamepadButtons[gamepadId] = map[ebiten.GamepadButton]bool{}
+	}
+	g.pressedGamepadButtons[gamepadId][button] = true
+}
+
+func (g *Game) removePressedGamepadButton(gamepadId ebiten.GamepadID, button ebiten.GamepadButton) {
+	delete(g.pressedGamepadButtons[gamepadId], button)
 }
 
 // returns enemy index if hit, -1 otherwise
