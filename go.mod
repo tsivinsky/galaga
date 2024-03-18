@@ -1,4 +1,4 @@
-module game
+module github.com/tsivinsky/galaga
 
 go 1.22.1
 
