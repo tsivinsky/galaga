@@ -9,13 +9,13 @@ import (
 )
 
 func DrawTextInCenter(screen *ebiten.Image, msg string, color color.Color) {
-	textBounds, _ := font.BoundString(IBMPlexMono, msg)
+	textBounds, _ := font.BoundString(IBMPlexMonoLarge, msg)
 	dx := textBounds.Max.X.Ceil() - textBounds.Min.X.Ceil()
 	dy := textBounds.Max.Y.Ceil() - textBounds.Min.Y.Ceil()
 	text.Draw(
 		screen,
 		msg,
-		IBMPlexMono,
+		IBMPlexMonoLarge,
 		screen.Bounds().Min.X+(screen.Bounds().Dx()-dx)/2,
 		screen.Bounds().Min.Y+(screen.Bounds().Dy()+dy)/2,
 		color,

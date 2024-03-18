@@ -16,7 +16,8 @@ var (
 )
 
 var (
-	IBMPlexMono font.Face
+	IBMPlexMono      font.Face
+	IBMPlexMonoLarge font.Face
 )
 
 func init() {
@@ -35,6 +36,12 @@ func init() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	IBMPlexMono = text.FaceWithLineHeight(IBMPlexMono, 32)
+
+	IBMPlexMonoLarge, err = opentype.NewFace(tt, &opentype.FaceOptions{
+		Size:    96,
+		DPI:     dpi,
+		Hinting: font.HintingFull,
+	})
+	IBMPlexMonoLarge = text.FaceWithLineHeight(IBMPlexMonoLarge, 128)
 }
