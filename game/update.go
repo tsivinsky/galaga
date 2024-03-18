@@ -24,6 +24,7 @@ func (g *Game) Update() error {
 	}
 
 	if ebiten.IsKeyPressed(ebiten.KeySpace) {
+	if inpututil.IsKeyJustPressed(ebiten.KeySpace) || isOptionsPressed {
 		g.isPaused = !g.isPaused
 		return nil
 	}
