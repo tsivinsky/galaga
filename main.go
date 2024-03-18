@@ -20,7 +20,7 @@ func main() {
 		Y:      0,
 		Width:  80,
 		Height: 24,
-		Speed:  32,
+		Speed:  24,
 		Color:  color.White,
 	})
 

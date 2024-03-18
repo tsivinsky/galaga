@@ -12,14 +12,18 @@ const (
 )
 
 func (p *Player) Update(windowWidth, windowHeight int, xAxis float64) {
-	if ebiten.IsKeyPressed(ebiten.KeyH) || xAxis < -0.3 {
+	if xAxis < -0.3 {
 		dx := float32(p.speed) * float32(xAxis) * -1
 		p.move(left, dx)
+	} else if ebiten.IsKeyPressed(ebiten.KeyH) {
+		p.move(left, float32(p.speed))
 	}
 
-	if ebiten.IsKeyPressed(ebiten.KeyL) || xAxis > 0.3 {
+	if xAxis > 0.3 {
 		dx := float32(p.speed) * float32(xAxis)
 		p.move(right, dx)
+	} else if ebiten.IsKeyPressed(ebiten.KeyL) {
+		p.move(right, float32(p.speed))
 	}
 
 	p.checkCollision(windowWidth, windowHeight)
