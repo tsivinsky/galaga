@@ -2,6 +2,7 @@ package game
 
 import (
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -96,6 +97,10 @@ func (g *Game) handleGamepads() {
 
 	g.gamepadIDsBuf = inpututil.AppendJustConnectedGamepadIDs(g.gamepadIDsBuf[:0])
 	for _, id := range g.gamepadIDsBuf {
+		name := ebiten.GamepadName(id)
+		if strings.Contains(strings.ToLower(name), "touchpad") {
+			continue
+		}
 		g.gamepadIDs[id] = struct{}{}
 	}
 	for id := range g.gamepadIDs {
