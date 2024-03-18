@@ -15,14 +15,14 @@ func (p *Player) Update(windowWidth, windowHeight int, xAxis float64) {
 	if xAxis < -0.3 {
 		dx := float32(p.speed) * float32(xAxis) * -1
 		p.move(left, dx)
-	} else if ebiten.IsKeyPressed(ebiten.KeyH) {
+	} else if ebiten.IsKeyPressed(ebiten.KeyH) || ebiten.IsKeyPressed(ebiten.KeyArrowLeft) {
 		p.move(left, float32(p.speed))
 	}
 
 	if xAxis > 0.3 {
 		dx := float32(p.speed) * float32(xAxis)
 		p.move(right, dx)
-	} else if ebiten.IsKeyPressed(ebiten.KeyL) {
+	} else if ebiten.IsKeyPressed(ebiten.KeyL) || ebiten.IsKeyPressed(ebiten.KeyArrowRight) {
 		p.move(right, float32(p.speed))
 	}
 
