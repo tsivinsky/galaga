@@ -4,13 +4,13 @@ import (
 	"image/color"
 
 	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 	"github.com/hajimehoshi/ebiten/v2/vector"
+	"github.com/tsivinsky/galaga/fonts"
 )
 
 func (g *Game) Draw(screen *ebiten.Image) {
 	if g.isGameOver {
-		ebitenutil.DebugPrint(screen, "Game Over")
+		fonts.DrawTextInCenter(screen, "Game Over", color.White)
 		return
 	}
 
@@ -24,5 +24,9 @@ func (g *Game) Draw(screen *ebiten.Image) {
 
 	for _, e := range g.enemies {
 		e.Draw(screen)
+	}
+
+	if g.isPaused {
+		fonts.DrawTextInCenter(screen, "Game Paused", color.White)
 	}
 }

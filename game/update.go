@@ -23,6 +23,15 @@ func (g *Game) Update() error {
 		return nil
 	}
 
+	if ebiten.IsKeyPressed(ebiten.KeySpace) {
+		g.isPaused = !g.isPaused
+		return nil
+	}
+
+	if g.isPaused {
+		return nil
+	}
+
 	now := time.Now()
 	if now.Sub(g.lastShootingTime) >= shootInterval {
 		g.Shoot()
