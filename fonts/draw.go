@@ -21,5 +21,16 @@ func DrawTextInCenter(screen *ebiten.Image, msg string, color color.Color) {
 		color,
 	)
 }
+
+func DrawTextInCoords(screen *ebiten.Image, msg string, x, y int, color color.Color) {
+	textBounds, _ := font.BoundString(IBMPlexMono, msg)
+	dy := textBounds.Max.Y.Floor() - textBounds.Min.Y.Floor()
+	text.Draw(
+		screen,
+		msg,
+		IBMPlexMono,
+		x,
+		y+dy,
+		color,
 	)
 }
