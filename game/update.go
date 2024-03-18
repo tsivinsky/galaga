@@ -52,7 +52,11 @@ func (g *Game) Update() error {
 	}
 
 	if index := g.shotEnemy(); index != -1 {
+		g.defeatedEnemiesCount++
 		g.enemies = append(g.enemies[:index], g.enemies[index+1:]...)
+		for _, e := range g.enemies {
+			e.Speed = g.calculateEnemySpeed()
+		}
 	}
 
 	return nil

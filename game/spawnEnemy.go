@@ -6,12 +6,22 @@ import (
 	"github.com/tsivinsky/galaga/enemy"
 )
 
+func (g *Game) calculateEnemySpeed() float32 {
+	if g.defeatedEnemiesCount <= 5 {
+		return 1
+	}
+
+	return 1.5
+}
+
 func (g *Game) SpawnEnemy() {
 	x, y := generateRandomCoords(g.windowWidth, g.windowHeight)
 
+	enemySpeed := g.calculateEnemySpeed()
 	g.enemies = append(g.enemies, enemy.New(enemy.Options{
-		X: float32(x),
-		Y: float32(y),
+		X:     float32(x),
+		Y:     float32(y),
+		Speed: enemySpeed,
 	}))
 }
 

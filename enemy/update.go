@@ -1,5 +1,5 @@
 package enemy
 
 func (e *Enemy) Update() {
-	e.Y += 1
+	e.Y += e.Speed
 }

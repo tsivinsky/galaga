@@ -11,17 +11,18 @@ import (
 )
 
 type Game struct {
-	player           player.Player
-	windowWidth      int
-	windowHeight     int
-	bullets          []*bullet.Bullet
-	gamepadIDsBuf    []ebiten.GamepadID
-	gamepadIDs       map[ebiten.GamepadID]struct{}
-	axes             map[ebiten.GamepadID][]string
-	lastShootingTime time.Time
-	enemies          []*enemy.Enemy
-	lastEnemySpawn   time.Time
-	isGameOver       bool
+	player               player.Player
+	windowWidth          int
+	windowHeight         int
+	bullets              []*bullet.Bullet
+	gamepadIDsBuf        []ebiten.GamepadID
+	gamepadIDs           map[ebiten.GamepadID]struct{}
+	axes                 map[ebiten.GamepadID][]string
+	lastShootingTime     time.Time
+	enemies              []*enemy.Enemy
+	lastEnemySpawn       time.Time
+	isGameOver           bool
+	defeatedEnemiesCount int
 }
 
 type GameOptions struct {
