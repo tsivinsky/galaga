@@ -56,7 +56,10 @@ func (g *Game) Update() error {
 		g.lastEnemySpawn = now
 	}
 
-	xAxis := ebiten.GamepadAxisValue(0, 0)
+	xAxis := 0.0
+	if len(g.gamepadIDs) > 0 {
+		xAxis = ebiten.GamepadAxisValue(0, 0)
+	}
 	g.player.Update(g.windowWidth, g.windowHeight, xAxis)
 
 	// TODO: need to delete bullets that are outside the screen
