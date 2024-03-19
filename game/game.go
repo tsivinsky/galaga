@@ -17,6 +17,7 @@ type Game struct {
 	bullets               []*bullet.Bullet
 	gamepadIDsBuf         []ebiten.GamepadID
 	gamepadIDs            map[ebiten.GamepadID]struct{}
+	activeGamepad         ebiten.GamepadID
 	axes                  map[ebiten.GamepadID][]string
 	pressedGamepadButtons map[ebiten.GamepadID]map[ebiten.GamepadButton]bool
 	lastShootingTime      time.Time
@@ -36,10 +37,14 @@ type GameOptions struct {
 
 func New(options GameOptions) Game {
 	return Game{
-		player:       options.Player,
-		windowWidth:  options.WindowWidth,
-		windowHeight: options.WindowHeight,
-		bullets:      []*bullet.Bullet{},
-		enemies:      []*enemy.Enemy{},
+		player:                options.Player,
+		windowWidth:           options.WindowWidth,
+		windowHeight:          options.WindowHeight,
+		bullets:               []*bullet.Bullet{},
+		enemies:               []*enemy.Enemy{},
+		gamepadIDsBuf:         make([]ebiten.GamepadID, 10),
+		gamepadIDs:            make(map[ebiten.GamepadID]struct{}),
+		axes:                  make(map[ebiten.GamepadID][]string),
+		pressedGamepadButtons: make(map[ebiten.GamepadID]map[ebiten.GamepadButton]bool),
 	}
 }
