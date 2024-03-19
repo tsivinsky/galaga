@@ -18,8 +18,7 @@ func (g *Game) Update() error {
 	}
 
 	if g.isGameOver {
-		// handle game over screen maybe
-		return nil
+		return g.handleGameOver()
 	}
 
 	if g.isVictory {
