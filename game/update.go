@@ -23,7 +23,7 @@ func (g *Game) Update() error {
 	}
 
 	if g.isVictory {
-		return nil
+		return g.handleVictory()
 	}
 
 	isOptionsPressed := g.isGamepadButtonPressed(ebiten.StandardGamepadButtonCenterRight)
