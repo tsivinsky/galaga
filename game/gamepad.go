@@ -66,9 +66,5 @@ func (g *Game) removePressedGamepadButton(gamepadID ebiten.GamepadID, button ebi
 
 func shouldConnectGamepad(id ebiten.GamepadID) bool {
 	name := strings.ToLower(ebiten.GamepadName(id))
-	if strings.Contains(name, "touchpad") {
-		return false
-	}
-
-	return true
+	return !strings.Contains(name, "touchpad")
 }
