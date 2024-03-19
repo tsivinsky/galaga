@@ -10,6 +10,9 @@ import (
 )
 
 func (g *Game) Draw(screen *ebiten.Image) {
+	g.drawBackground(screen)
+	g.drawEnemyCount(screen)
+
 	if g.isGameOver {
 		fonts.DrawTextInCenter(screen, "Game Over", color.White)
 		return
@@ -20,8 +23,6 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		return
 	}
 
-	g.drawBackground(screen)
-	g.drawEnemyCount(screen)
 	g.player.Draw(screen)
 	g.drawEnemies(screen)
 	g.drawBullets(screen)
